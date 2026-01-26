@@ -2,6 +2,22 @@
 
 Sync Claude Code และ VS Code configuration ข้ามหลายเครื่อง
 
+## One-Liner Setup (เครื่องใหม่)
+
+```powershell
+irm https://raw.githubusercontent.com/sermsak182/claude-config-sync/master/scripts/quick-setup.ps1 | iex
+```
+
+**แค่ copy คำสั่งนี้ไป paste ใน PowerShell ก็เสร็จ!**
+
+สิ่งที่จะได้:
+- ✅ Clone repository ไปยัง `$HOME\claude-config-sync`
+- ✅ Import VS Code settings, keybindings, snippets
+- ✅ Install 91 extensions
+- ✅ พร้อมใช้งานทันที
+
+---
+
 ## โครงสร้าง
 
 ```
