@@ -1,0 +1,75 @@
+{
+  "Console Log": {
+    "prefix": "cl",
+    "body": "console.log('${1:label}:', $2)",
+    "description": "Console log with label"
+  },
+  "Try Catch": {
+    "prefix": "tc",
+    "body": [
+      "try {",
+      "  $0",
+      "} catch (error) {",
+      "  console.error(error)",
+      "}"
+    ],
+    "description": "Try catch block"
+  },
+  "Async Function": {
+    "prefix": "afn",
+    "body": [
+      "async function ${1:name}($2) {",
+      "  try {",
+      "    $0",
+      "  } catch (error) {",
+      "    throw error",
+      "  }",
+      "}"
+    ],
+    "description": "Async function with error handling"
+  },
+  "TODO Comment": {
+    "prefix": "todo",
+    "body": "// TODO: $0",
+    "description": "TODO comment"
+  },
+  "FIXME Comment": {
+    "prefix": "fixme",
+    "body": "// FIXME: $0",
+    "description": "FIXME comment"
+  },
+  "Security Comment": {
+    "prefix": "security",
+    "body": "// SECURITY: $0",
+    "description": "Security note"
+  },
+  "Audit Comment": {
+    "prefix": "audit",
+    "body": [
+      "/**",
+      " * @audit",
+      " * @author <USER>",
+      " * @date ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      " * @change $0",
+      " */"
+    ],
+    "description": "Audit trail comment"
+  },
+  "Input Validation": {
+    "prefix": "validate",
+    "body": [
+      "if (!${1:input}) {",
+      "  throw new Error('${1:input} is required')",
+      "}",
+      "if (typeof ${1:input} !== '${2:string}') {",
+      "  throw new Error('${1:input} must be a ${2:string}')",
+      "}"
+    ],
+    "description": "Input validation"
+  },
+  "Placeholder Secret": {
+    "prefix": "secret",
+    "body": "<${1|API_KEY,TOKEN,PASSWORD,SECRET,DATABASE_URL|}>",
+    "description": "Placeholder for secret value"
+  }
+}
