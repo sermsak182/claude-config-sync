@@ -76,4 +76,8 @@
   "// No auto-updates allowed": "",
   "// Commit signing required": "",
   "snyk.advanced.cliPath": "C:\\Users\\bch00\\AppData\\Local\\snyk\\vscode-cli\\snyk-win.exe",
+  "snyk.trustedFolders": ["c:\\sermsak"],
+  "snyk.yesWelcomeNotification": false,
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.selectedModel": "claude-opus-4-5-20251101",
 }

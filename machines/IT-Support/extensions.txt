@@ -61,6 +61,7 @@ mtxr.sqltools
 naumovs.color-highlight
 njpwerner.autodocstring
 oderwat.indent-rainbow
+openai.chatgpt
 pkief.material-icon-theme
 rangav.vscode-thunder-client
 redhat.vscode-xml
@@ -78,7 +79,6 @@ usernamehw.errorlens
 vincaslt.highlight-matching-tag
 vscjava.vscode-java-upgrade
 vscode-icons-team.vscode-icons
-vscodevim.vim
 vue.volar
 wayou.vscode-todo-highlight
 wholroyd.jinja
