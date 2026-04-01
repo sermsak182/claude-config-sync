@@ -659,11 +659,11 @@ C:\xampp\htdocs\dr-admin\               # Admin Panel (PHP)
 ### Build Commands
 ```bash
 # Server Build
-cd "D:\02 LAGHAIM\02 SOURC CODE\LH-DR\LH-DR_256811161402\01-DR-SERVER-SOURCE-CODE"
+cd "D:\02 LAGHAIM\02 SOURC CODE\LH-DR\01-DR-SERVER-SOURCE-CODE"
 msbuild Laghaim.sln /p:Configuration=Release /p:Platform=Win32 /m
 
 # Client Build (Thai)
-cd "D:\02 LAGHAIM\02 SOURC CODE\LH-DR\LH-DR_256811161402\02-DR-CLIENT-SOURCE-CODE\Laghaim_Client"
+cd "D:\02 LAGHAIM\02 SOURC CODE\LH-DR\02-DR-CLIENT-SOURCE-CODE\Laghaim_Client"
 msbuild Laghaim_2010.sln /p:Configuration=TH_Release_Game /p:Platform=Win32 /m
 ```
 

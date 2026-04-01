@@ -1,0 +1,172 @@
+{
+  "env": {
+    "EDITOR": "cursor",
+    "CLAUDE_CODE_MAX_OUTPUT_LINES": "500",
+    "BASH_DEFAULT_TIMEOUT_MS": "120000",
+    "BASH_MAX_TIMEOUT_MS": "600000"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(php:*)",
+      "Bash(composer:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+      "Bash(pytest:*)",
+      "Bash(go:*)",
+      "Bash(cargo:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(kubectl:*)",
+      "Bash(mysql:*)",
+      "Bash(psql:*)",
+      "Bash(redis-cli:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(pwd:*)",
+      "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(touch:*)",
+      "Bash(code:*)",
+      "Bash(cursor:*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "WebFetch(domain:*)",
+      "WebSearch",
+      "Task(*)",
+      "TodoWrite(*)",
+      "NotebookEdit(*)",
+      "mcp__laghaim__mysql_query",
+      "mcp__filesystem__*",
+      "mcp__memory__*",
+      "mcp__github__*"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf /*)",
+      "Bash(> /dev/sda)",
+      "Bash(mkfs:*)",
+      "Bash(dd if:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"$timestamp = Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'; $backupDir = Join-Path $env:USERPROFILE '.claude\\file-backups'; if (-not (Test-Path $backupDir)) { New-Item -ItemType Directory -Path $backupDir -Force | Out-Null }; Write-Output '{\\\"status\\\": \\\"backup_ready\\\", \\\"timestamp\\\": \\\"'$timestamp'\\\"}'\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"$cmd = $env:CLAUDE_TOOL_INPUT | ConvertFrom-Json | Select-Object -ExpandProperty command -ErrorAction SilentlyContinue; Write-Output '{\\\"status\\\": \\\"executing\\\", \\\"preview\\\": \\\"'$($cmd.Substring(0, [Math]::Min(50, $cmd.Length)))'\\\"}'\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"Write-Output '{\\\"status\\\": \\\"success\\\", \\\"action\\\": \\\"file_modified\\\"}'\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"$exitCode = $env:CLAUDE_TOOL_EXIT_CODE; if ($exitCode -eq 0) { Write-Output '{\\\"status\\\": \\\"success\\\"}' } else { Write-Output '{\\\"status\\\": \\\"failed\\\", \\\"exit_code\\\": '$exitCode'}' }\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"[Console]::Beep(800,150); [Console]::Beep(1000,150)\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"$timestamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'; Write-Output ('{\"completed_at\": \"' + $timestamp + '\", \"status\": \"session_complete\"}')\""
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\serms\\.claude\\statusline-command.ps1\""
+  },
+  "alwaysThinkingEnabled": true,
+  "mcpServers": {
+    "laghaim": {
+      "command": "C:\\Users\\serms\\AppData\\Roaming\\npm\\mcp-server-mysql.cmd",
+      "args": [],
+      "env": {
+        "MYSQL_HOST": "45.144.165.13",
+        "MYSQL_USER": "sermsak",
+        "MYSQL_PASS": "49322425128@sK",
+        "MYSQL_PORT": "2528"
+      }
+    },
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\serms\\AppData\\Roaming\\npm\\node_modules\\@modelcontextprotocol\\server-filesystem\\dist\\index.js",
+        "D:\\02 LAGHAIM\\02 SOURC CODE\\LH-DR",
+        "C:\\xampp\\htdocs\\dr-admin",
+        "C:\\sermsak"
+      ]
+    },
+    "memory": {
+      "command": "C:\\Users\\serms\\AppData\\Roaming\\npm\\mcp-server-memory.cmd",
+      "args": []
+    },
+    "github": {
+      "command": "C:\\Users\\serms\\AppData\\Roaming\\npm\\mcp-server-github.cmd",
+      "args": [],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "REDACTED_USE_ENV_VAR"
+      }
+    }
+  },
+  "verbose": false,
+  "theme": "dark",
+  "preferredNotificationMethod": "sound",
+  "autoCompact": true,
+  "autoCompactThreshold": 80
+}

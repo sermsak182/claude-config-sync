@@ -5,7 +5,7 @@
   "editor.wordWrap": "on",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
@@ -20,7 +20,7 @@
     "**/node_modules": true,
     "**/dist": true,
     "**/.git": true,
-    "**/coverage": true,
+    "**/coverage": true
   },
   "// === GIT ===": "",
   "git.autofetch": true,
@@ -51,7 +51,7 @@
     "**/dist": true,
     "**/coverage": true,
     "**/*.log": false,
-    "**/.env": false,
+    "**/.env": false
   },
   "// === EDITOR RESTRICTIONS ===": "",
   "editor.formatOnSave": true,
@@ -66,8 +66,8 @@
   "// === SONARLINT ===": "",
   "sonarlint.rules": {
     "javascript:S2068": {
-      "level": "on",
-    },
+      "level": "on"
+    }
   },
   "// === DOCUMENTATION ===": "",
   "markdown.validate.enabled": true,
@@ -76,4 +76,9 @@
   "// No auto-updates allowed": "",
   "// Commit signing required": "",
   "snyk.advanced.cliPath": "C:\\Users\\bch00\\AppData\\Local\\snyk\\vscode-cli\\snyk-win.exe",
+  "snyk.yesWelcomeNotification": false,
+  "claudeCode.preferredLocation": "panel",
+"claudeCode.selectedModel": "claude-opus-4-5-20251101",
+  "snyk.securityAtInception.autoConfigureSnykMcpServer": true,
+  "snyk.securityAtInception.executionFrequency": "On Code Generation"
 }
