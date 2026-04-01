@@ -65,6 +65,23 @@ if (Test-Path $ClaudeSource) {
             Write-Host "[OK] Imported: $($_.Name)"
         }
     }
+
+    # Import commands/ (custom skills)
+    $CommandsSource = Join-Path $ClaudeSource "commands"
+    if (Test-Path $CommandsSource) {
+        $CommandsDest = Join-Path $ClaudeConfigPath "commands"
+        if ($DryRun) {
+            $CmdCount = (Get-ChildItem $CommandsSource -File -Recurse).Count
+            Write-Host "[DRY] Would copy: commands/ ($CmdCount skills) -> $CommandsDest"
+        } else {
+            if (-not (Test-Path $CommandsDest)) {
+                New-Item -ItemType Directory -Path $CommandsDest -Force | Out-Null
+            }
+            Copy-Item "$CommandsSource\*" -Destination $CommandsDest -Recurse -Force
+            $CmdCount = (Get-ChildItem $CommandsSource -File -Recurse).Count
+            Write-Host "[OK] Imported: commands/ ($CmdCount skills)"
+        }
+    }
 } else {
     Write-Host "[INFO] No Claude config in source"
 }

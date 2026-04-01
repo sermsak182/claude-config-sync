@@ -62,6 +62,18 @@ if [ -d "$CLAUDE_SOURCE" ]; then
             echo "[OK] Imported: $FNAME"
         fi
     done
+
+    # Import commands/ (custom skills)
+    if [ -d "$CLAUDE_SOURCE/commands" ]; then
+        CMD_COUNT=$(find "$CLAUDE_SOURCE/commands" -type f | wc -l | tr -d ' ')
+        if $DRY_RUN; then
+            echo "[DRY] Would copy: commands/ ($CMD_COUNT skills) -> $CLAUDE_CONFIG/commands"
+        else
+            mkdir -p "$CLAUDE_CONFIG/commands"
+            cp -R "$CLAUDE_SOURCE/commands/"* "$CLAUDE_CONFIG/commands/" 2>/dev/null
+            echo "[OK] Imported: commands/ ($CMD_COUNT skills)"
+        fi
+    fi
 else
     echo "[INFO] No Claude config in source"
 fi

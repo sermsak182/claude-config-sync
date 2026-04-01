@@ -56,6 +56,18 @@ if (Test-Path $ClaudeConfigPath) {
             Write-Host "[SKIP] settings.json contains sensitive data"
         }
     }
+
+    # Copy commands/ (custom skills)
+    $CommandsPath = Join-Path $ClaudeConfigPath "commands"
+    if (Test-Path $CommandsPath) {
+        $CommandsDest = Join-Path $ClaudeDestPath "commands"
+        if (-not (Test-Path $CommandsDest)) {
+            New-Item -ItemType Directory -Path $CommandsDest -Force | Out-Null
+        }
+        Copy-Item "$CommandsPath\*" -Destination $CommandsDest -Recurse -Force
+        $CmdCount = (Get-ChildItem $CommandsPath -File -Recurse).Count
+        Write-Host "[OK] Exported: commands/ ($CmdCount skills)"
+    }
 } else {
     Write-Host "[INFO] No Claude config found at $ClaudeConfigPath"
 }

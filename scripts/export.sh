@@ -40,6 +40,14 @@ if [ -d "$CLAUDE_CONFIG" ]; then
             echo "[SKIP] settings.json contains sensitive data"
         fi
     fi
+
+    # Copy commands/ (custom skills)
+    if [ -d "$CLAUDE_CONFIG/commands" ]; then
+        mkdir -p "$CLAUDE_DEST/commands"
+        cp -R "$CLAUDE_CONFIG/commands/"* "$CLAUDE_DEST/commands/" 2>/dev/null
+        CMD_COUNT=$(find "$CLAUDE_CONFIG/commands" -type f | wc -l | tr -d ' ')
+        echo "[OK] Exported: commands/ ($CMD_COUNT skills)"
+    fi
 else
     echo "[INFO] No Claude config found at $CLAUDE_CONFIG"
 fi
